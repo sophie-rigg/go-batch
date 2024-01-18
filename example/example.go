@@ -2,9 +2,10 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
-	batcher "go-batch"
+	"github.com/sophie-rigg/go-batch"
 )
 
 func main() {
@@ -15,7 +16,7 @@ func main() {
 			itemsInBatch = append(itemsInBatch, v.val)
 		}
 		fmt.Println(itemsInBatch)
-		return nil
+		return errors.New("error")
 	})
 	go func() {
 		select {
