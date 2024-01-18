@@ -15,7 +15,7 @@ func New[T any](batchSize int) *Client[T] {
 }
 
 func (c *Client[T]) Run(ctx context.Context, do func(ctx context.Context, object []T) error) (chan T, chan error) {
-	channel := make(chan T)
+	channel := make(chan T, c.batchSize)
 	errChannel := make(chan error)
 	go func() {
 		var (
